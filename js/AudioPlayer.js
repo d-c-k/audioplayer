@@ -26,12 +26,12 @@ class AudioPlayer{
                 this.isPlaying = true;
                 this.duration = this.track.duration;
                 this.range.max = this.duration;
-                this.playPauseImg.src = "/icons/pause.svg"
+                this.playPauseImg.src = "/audioplayer/icons/pause.svg"
             }
             else{
                 this.track.pause();
                 this.isPlaying = false;
-                this.playPauseImg.src = "/icons/play.svg"
+                this.playPauseImg.src = "/audioplayer/icons/play.svg"
             }
 
             this.range.addEventListener('change', () =>{
@@ -57,16 +57,16 @@ class AudioPlayer{
             this.volume = this.volumeSlider.value;
             this.track.volume = this.volume;
             if (this.volume < 0.01){
-                this.volumeBtnImg.src = "/icons/vol_mute.svg";
+                this.volumeBtnImg.src = "/audioplayer/icons/vol_mute.svg";
             }
             else if (this.volume > 0 && this.volume <= 0.25){
-                this.volumeBtnImg.src = "/icons/vol_low.svg";
+                this.volumeBtnImg.src = "/audioplayer/icons/vol_low.svg";
             }
             else if (this.volume > 0.25 && this.volume <= 0.75){
-                this.volumeBtnImg.src = "/icons/vol_med.svg";
+                this.volumeBtnImg.src = "/audioplayer/icons/vol_med.svg";
             }
             else if (this.volume > 0.75){
-                this.volumeBtnImg.src = "/icons/vol_high.svg";
+                this.volumeBtnImg.src = "/audioplayer/icons/vol_high.svg";
             }
         })
 
@@ -74,27 +74,27 @@ class AudioPlayer{
             if (this.muted === false){
                 this.muted = true;
                 this.track.volume = 0;
-                this.volumeBtnImg.src = "/icons/vol_mute.svg";
+                this.volumeBtnImg.src = "/audioplayer/icons/vol_mute.svg";
             }
             else{
                 this.muted = false;
                 this.track.volume = this.volume;
                 if (this.volume < 0.01){
-                    this.volumeBtnImg.src = "/icons/vol_mute.svg";
+                    this.volumeBtnImg.src = "/audioplayer/icons/vol_mute.svg";
                 }
                 else if (this.volume > 0 && this.volume <= 0.25){
-                    this.volumeBtnImg.src = "/icons/vol_low.svg";
+                    this.volumeBtnImg.src = "/audioplayer/icons/vol_low.svg";
                 }
                 else if (this.volume > 0.25 && this.volume <= 0.75){
-                    this.volumeBtnImg.src = "/icons/vol_med.svg";
+                    this.volumeBtnImg.src = "/audioplayer/icons/vol_med.svg";
                 }
                 else if (this.volume > 0.75){
-                    this.volumeBtnImg.src = "/icons/vol_high.svg";
+                    this.volumeBtnImg.src = "/audioplayer/icons/vol_high.svg";
                 }
             }
         })
     }
 }
 let tracklist = [
-    "/audio/les_maitres_du_temps_1982.mp3"
+    "/audioplayer/audio/les_maitres_du_temps_1982.mp3"
 ]
