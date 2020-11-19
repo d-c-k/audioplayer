@@ -96,5 +96,5 @@ class AudioPlayer{
     }
 }
 let tracklist = [
-    "../audio/Pandemix.mp3"
+    "../audio/les_maitres_du_temps_1982.mp3"
 ]
