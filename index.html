@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/png" href="icons/favicon_audio.png">
     <script src="js/AudioPlayer.js"></script>
     <script src="js/main.js"></script>
-    <title>Document</title>
+    <title>AudioPlayer</title>
 </head>
 <body>
     <div class="main_container">
@@ -16,17 +17,24 @@
                 <img src="icons/play.svg" alt="play/pause" id="play_pause_img">
             </button>
             <button type="button" id="prev_btn">
-                <img src="icons/prev.svg" alt="prev">
+                <img src="icons/prev.svg" alt="previous">
             </button>
             <button type="button" id="next_btn">
                 <img src="icons/next.svg" alt="next">
             </button>
+            <button type="button" id="repeat_btn">
+                <img src="icons/repeat.svg" alt="repeat" id="repeat_btn_img">
+            </button>
         </div>
         <div class="volume">
-            <button type="button" id="volume_btn">
-                <img src="icons/vol_high.svg" alt="volume" id="volume_btn_img">
-            </button>
-            <input type="range" id="volume" value="1" min="0" max="1" step="0.01">
+            <div id="volume_btn_container">
+                <button type="button" id="volume_btn">
+                    <img src="icons/vol_high.svg" alt="volume" id="volume_btn_img">
+                </button>
+            </div>
+            <div id="volume_slider_container">
+                <input type="range" id="volume" value="1" min="0" max="1" step="0.01">
+            </div> 
         </div>
         <div class="range">
             <input type="range" id="range" value="0" min="0">

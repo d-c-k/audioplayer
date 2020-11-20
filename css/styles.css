@@ -49,7 +49,7 @@ body {
 .main_container .audio_controls button {
   cursor: cell;
   display: inline-block;
-  width: 1.5rem;
+  width: 2rem;
   margin: 0 1rem 0 0;
   outline: none;
   border: none;
@@ -89,10 +89,22 @@ body {
           align-items: center;
 }
 
-.main_container .volume button {
+.main_container .volume #volume_btn_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.main_container .volume #volume_btn_container button {
   cursor: cell;
   display: inline-block;
-  width: 1.5rem;
+  width: 2rem;
   margin: 0 1rem 0 0;
   outline: none;
   border: none;
@@ -107,21 +119,34 @@ body {
   -moz-appearance: none;
 }
 
-.main_container .volume button:hover {
+.main_container .volume #volume_btn_container button:hover {
   opacity: 1;
 }
 
-.main_container .volume button:active {
+.main_container .volume #volume_btn_container button:active {
   -webkit-transform: scale(0.9);
           transform: scale(0.9);
 }
 
-.main_container .volume #volume {
+.main_container .volume #volume_slider_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 80%;
+}
+
+.main_container .volume #volume_slider_container #volume {
   -webkit-appearance: none;
   -moz-appearance: none;
        appearance: none;
   outline: none;
-  height: 3px;
+  height: 2px;
   opacity: 0.7;
   -webkit-transition: 0.2s;
   -webkit-transition: opacity 0.2s;
@@ -129,23 +154,27 @@ body {
   cursor: cell;
 }
 
-.main_container .volume #volume:hover {
+.main_container .volume #volume_slider_container #volume:hover {
   opacity: 1;
 }
 
-.main_container .volume #volume::-webkit-slider-thumb {
+.main_container .volume #volume_slider_container #volume::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   width: 0.5rem;
   height: 1rem;
-  background: white;
+  background: transparent;
+  border: 2px solid white;
+  outline: none;
   cursor: cell;
 }
 
-.main_container .volume #volume::-moz-range-thumb {
+.main_container .volume #volume_slider_container #volume::-moz-range-thumb {
   width: 0.5rem;
   height: 1rem;
-  background: white;
+  background: transparent;
+  border: 2px solid white;
+  outline: none;
   cursor: cell;
 }
 
@@ -168,7 +197,7 @@ body {
   -moz-appearance: none;
        appearance: none;
   outline: none;
-  height: 3px;
+  height: 2px;
   opacity: 0.7;
   -webkit-transition: 0.2s;
   -webkit-transition: opacity 0.2s;
@@ -186,14 +215,79 @@ body {
   appearance: none;
   width: 0.5rem;
   height: 1rem;
-  background: white;
+  background: transparent;
+  border: 2px solid white;
+  outline: none;
   cursor: cell;
 }
 
 .main_container .range #range::-moz-range-thumb {
   width: 0.5rem;
   height: 1rem;
-  background: white;
+  background: transparent;
+  border: 2px solid white;
+  outline: none;
   cursor: cell;
+}
+
+@media (max-aspect-ratio: 1 / 1) {
+  .main_container {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1rem 1fr 1fr 1fr 1fr 1rem;
+        grid-template-columns: 1rem 1fr 1fr 1fr 1fr 1rem;
+    -ms-grid-rows: 1rem 2rem 2rem 2rem 1fr 2rem 1rem;
+        grid-template-rows: 1rem 2rem 2rem 2rem 1fr 2rem 1rem;
+  }
+  .main_container .main_display {
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 6;
+    grid-column: 1/7;
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 7;
+    grid-row: 1/8;
+  }
+  .main_container .audio_controls {
+    -ms-grid-column: 2;
+    -ms-grid-column-span: 4;
+    grid-column: 2/6;
+    -ms-grid-row: 2;
+    grid-row: 2;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+  .main_container .audio_controls button {
+    margin: 0;
+  }
+  .main_container .volume {
+    -ms-grid-column: 2;
+    -ms-grid-column-span: 4;
+    grid-column: 2/6;
+    -ms-grid-row: 3;
+    grid-row: 3;
+  }
+  .main_container .volume #volume_btn_container {
+    width: 20%;
+  }
+  .main_container .volume #volume_btn_container button {
+    margin: 0;
+  }
+  .main_container .volume #volume_slider_container {
+    width: 80;
+  }
+  .main_container .volume #volume_slider_container #volume {
+    width: 100%;
+  }
+  .main_container .range {
+    -ms-grid-column: 2;
+    -ms-grid-column-span: 4;
+    grid-column: 2/6;
+    -ms-grid-row: 6;
+    grid-row: 6;
+  }
 }
 /*# sourceMappingURL=styles.css.map */

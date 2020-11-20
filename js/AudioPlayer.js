@@ -7,14 +7,16 @@ class AudioPlayer{
         this.range = document.getElementById("range");
         this.volumeSlider = document.getElementById("volume");
         this.volumeBtn = document.getElementById("volume_btn");
-        this.volumeBtnImg = document.getElementById("volume_btn_img")
+        this.volumeBtnImg = document.getElementById("volume_btn_img");
         this.volume = 1;
         this.muted = false;
         this.isPlaying = false;
+        this.repeatBtn = document.getElementById("repeat_btn");
+        this.repeating = false;
         this.duration = 0;
         this.currentTime = 0;
         this.trackCounter = 0;
-        this.background = document.getElementById("background")
+        this.background = document.getElementById("background");
         this.track = new Audio();
     }
 
@@ -30,12 +32,12 @@ class AudioPlayer{
             if(this.isPlaying === false){
                 this.track.play();
                 this.isPlaying = true;
-                this.playPauseImg.src = /*"/audioplayer/icons/pause.svg"*/ "icons/pause.svg" ;
+                this.playPauseImg.src = "icons/pause.svg";
             }
             else{
                 this.track.pause();
                 this.isPlaying = false;
-                this.playPauseImg.src = /*"/audioplayer/icons/play.svg"*/ "icons/play.svg" ;
+                this.playPauseImg.src = "icons/play.svg";
             } 
         })
 
@@ -48,14 +50,20 @@ class AudioPlayer{
         })
 
         this.track.addEventListener('ended', () =>{
-            this.trackCounter++;
+            if (this.repeating === false){
+                this.trackCounter++;
 
-            if (this.trackCounter > tracklist.length - 1){
-                this.trackCounter = 0;
+                if (this.trackCounter > tracklist.length - 1){
+                    this.trackCounter = 0;
+                }
+
+                this.updateTrack();                
+                this.track.play();
             }
-
-            this.updateTrack();                
-            this.track.play();
+            else{
+                this.updateTrack();
+                this.track.play();
+            }
         }) 
 
         this.prevBtn.addEventListener('click', () =>{
@@ -65,8 +73,15 @@ class AudioPlayer{
             else{
                 this.trackCounter--;
             }
+            
             this.updateTrack();
-            this.track.play();
+
+            if (this.isPlaying === true){
+                this.track.play();
+            }
+            else{
+                this.track.pause();
+            }
         })
 
         this.nextBtn.addEventListener('click', () =>{
@@ -76,8 +91,15 @@ class AudioPlayer{
             else{
                 this.trackCounter++;
             }
+
             this.updateTrack();
-            this.track.play();
+
+            if (this.isPlaying === true){
+                this.track.play();
+            }
+            else{
+                this.track.pause();
+            }
         })
 
         this.volumeSlider.addEventListener('change', () =>{
@@ -85,16 +107,16 @@ class AudioPlayer{
             this.volume = this.volumeSlider.value;
             this.track.volume = this.volume;
             if (this.volume < 0.01){
-                this.volumeBtnImg.src = /*"/audioplayer/icons/vol_mute.svg"*/ "icons/vol_mute.svg" ;
+                this.volumeBtnImg.src = "icons/vol_mute.svg";
             }
             else if (this.volume > 0 && this.volume <= 0.25){
-                this.volumeBtnImg.src = /*"/audioplayer/icons/vol_low.svg"*/ "icons/vol_low.svg" ;
+                this.volumeBtnImg.src = "icons/vol_low.svg";
             }
             else if (this.volume > 0.25 && this.volume <= 0.75){
-                this.volumeBtnImg.src = /*"/audioplayer/icons/vol_med.svg"*/ "icons/vol_med.svg" ;
+                this.volumeBtnImg.src = "icons/vol_med.svg";
             }
             else if (this.volume > 0.75){
-                this.volumeBtnImg.src = /*"/audioplayer/icons/vol_high.svg"*/ "icons/vol_high.svg" ;
+                this.volumeBtnImg.src = "icons/vol_high.svg";
             }
         })
 
@@ -102,27 +124,36 @@ class AudioPlayer{
             if (this.muted === false){
                 this.muted = true;
                 this.track.volume = 0;
-                this.volumeBtnImg.src = /*"/audioplayer/icons/vol_mute.svg"*/ "icons/vol_mute.svg";
+                this.volumeBtnImg.src = "icons/vol_mute.svg";
             }
             else{
                 this.muted = false;
                 this.track.volume = this.volume;
                 if (this.volume < 0.01){
-                    this.volumeBtnImg.src = /*"/audioplayer/icons/vol_mute.svg"*/ "icons/vol_mute.svg" ;
+                    this.volumeBtnImg.src = "icons/vol_mute.svg";
                 }
                 else if (this.volume > 0 && this.volume <= 0.25){
-                    this.volumeBtnImg.src = /*"/audioplayer/icons/vol_low.svg"*/ "icons/vol_low.svg" ;
+                    this.volumeBtnImg.src = "icons/vol_low.svg";
                 }
                 else if (this.volume > 0.25 && this.volume <= 0.75){
-                    this.volumeBtnImg.src = /*"/audioplayer/icons/vol_med.svg"*/ "icons/vol_med.svg" ;
+                    this.volumeBtnImg.src = "icons/vol_med.svg";
                 }
                 else if (this.volume > 0.75){
-                    this.volumeBtnImg.src = /*"/audioplayer/icons/vol_high.svg"*/ "icons/vol_high.svg" ;
+                    this.volumeBtnImg.src = "icons/vol_high.svg";
                 }
             }
         })
 
-
+        this.repeatBtn.addEventListener('click', () =>{
+            if (this.repeating === false){
+                this.repeating = true;
+                document.getElementById("repeat_btn_img").src = "icons/repeat_active.svg"
+            }
+            else{
+                this.repeating = false;
+                document.getElementById("repeat_btn_img").src = "icons/repeat.svg"
+            }
+        })
     }
 
     updateTrack(){    
@@ -132,11 +163,9 @@ class AudioPlayer{
         this.range.max = this.duration;
     }
 }
-let tracklist = [
-    // "/audioplayer/audio/les_maitres_du_temps_1982.mp3",
-    "audio/les_maitres_du_temps_1982.mp3",
-    // "/audioplayer/audio/arrow_emblem_grand_prix_no_taka.mp3",
-    "audio/arrow_emblem_grand_prix_no_taka.mp3",
+let tracklist = [   
+    "audio/les_maitres_du_temps_1982.mp3",    
+    "audio/arrow_emblem_grand_prix_no_taka.mp3"
 ]
 
 let themeGif = [

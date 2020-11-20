@@ -1,7 +1,7 @@
 @mixin controlBtn{
     cursor: cell;
     display: inline-block;
-    width: 1.5rem;
+    width: 2rem;
     margin: 0 1rem 0 0;
     outline:none;
     border: none;
@@ -25,7 +25,7 @@
     -webkit-appearance: none;
     appearance: none;
     outline: none;
-    height: 3px;
+    height: 2px;
     opacity: 0.7;
     -webkit-transition: 0.2s;
     transition: opacity 0.2s;
@@ -41,14 +41,18 @@
     appearance: none;
     width: 0.5rem;
     height: 1rem;
-    background: white;
+    background: transparent;
+    border: 2px solid white;
+    outline: none;
     cursor: cell;
 }
 
 @mixin sliderThumbMoz{
     width: 0.5rem;
     height: 1rem;
-    background: white;
+    background: transparent;
+    border: 2px solid white;
+    outline: none;
     cursor: cell;
 }
 
@@ -103,32 +107,45 @@ body{
         justify-content: flex-start;
         align-items: center;
 
-        button{
-            @include controlBtn()
+        #volume_btn_container{
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;            
+
+            button{
+                @include controlBtn()
+            }
+    
+            button:hover{
+                @include controlBtnHover()
+            }
+    
+            button:active{
+                @include controlBtnActive()
+            }
         }
 
-        button:hover{
-            @include controlBtnHover()
-        }
+        #volume_slider_container{
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            width: 80%;
+            
+            #volume{
+                @include range()
+            }
 
-        button:active{
-            @include controlBtnActive()
-        }
+            #volume:hover{
+                @include rangeHover();
+            }
 
-        #volume{
-            @include range()
-        }
+            #volume::-webkit-slider-thumb{
+                @include sliderThumbWebkit()
+            }
 
-        #volume:hover{
-            @include rangeHover();
-        }
-
-        #volume::-webkit-slider-thumb{
-            @include sliderThumbWebkit()
-        }
-
-        #volume::-moz-range-thumb{
-            @include sliderThumbMoz()
+            #volume::-moz-range-thumb{
+                @include sliderThumbMoz()
+            }
         }
     }
 
@@ -158,6 +175,52 @@ body{
     }
 }
 
-@media screen and (min-width: 1008px){
+@media (max-aspect-ratio: 1/1){
+    .main_container{
+        display:grid;
+        grid-template-columns: 1rem 1fr 1fr 1fr 1fr 1rem;
+        grid-template-rows: 1rem 2rem 2rem 2rem 1fr 2rem 1rem;
 
+        .main_display{
+            grid-column: 1/7;
+            grid-row: 1/8;
+        }
+
+        .audio_controls{
+            grid-column: 2/6;
+            grid-row: 2;
+            display: flex;
+            justify-content: space-between;
+            
+            button{
+                margin: 0;
+            }
+        }
+
+        .volume{
+            grid-column: 2/6;
+            grid-row: 3;
+
+            #volume_btn_container{
+                width: 20%;
+
+                button{
+                    margin: 0;
+                }
+            } 
+            
+            #volume_slider_container{
+                width: 80;
+
+                #volume{
+                    width: 100%;
+                }
+            }
+        }
+
+        .range{
+            grid-column: 2/6;
+            grid-row: 6;
+        }
+    }
 }
