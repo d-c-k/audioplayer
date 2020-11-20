@@ -62,14 +62,7 @@
 }
 
 body {
-    min-height: 100vh;
-    min-height: -webkit-fill-available;
     overflow: hidden;
-
-}
-
-html {
-    height: -webkit-fill-available;
 }
 
 .main_container{
@@ -182,11 +175,13 @@ html {
     }
 }
 
+//vertical displays
+
 @media (max-aspect-ratio: 1/1){
     .main_container{
         display:grid;
         grid-template-columns: 1rem 1fr 1fr 1fr 1fr 1rem;
-        grid-template-rows: 1rem 2rem 2rem 2rem 1fr 2rem 1rem;
+        grid-template-rows: 1rem 2rem 2rem 2rem 1fr 2rem 6rem;
 
         .main_display{
             grid-column: 1/7;

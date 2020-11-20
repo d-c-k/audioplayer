@@ -4,13 +4,7 @@
 }
 
 body {
-  min-height: 100vh;
-  min-height: -webkit-fill-available;
   overflow: hidden;
-}
-
-html {
-  height: -webkit-fill-available;
 }
 
 .main_container {
@@ -242,8 +236,8 @@ html {
     display: grid;
     -ms-grid-columns: 1rem 1fr 1fr 1fr 1fr 1rem;
         grid-template-columns: 1rem 1fr 1fr 1fr 1fr 1rem;
-    -ms-grid-rows: 1rem 2rem 2rem 2rem 1fr 2rem 1rem;
-        grid-template-rows: 1rem 2rem 2rem 2rem 1fr 2rem 1rem;
+    -ms-grid-rows: 1rem 2rem 2rem 2rem 1fr 2rem 6rem;
+        grid-template-rows: 1rem 2rem 2rem 2rem 1fr 2rem 6rem;
   }
   .main_container .main_display {
     -ms-grid-column: 1;
