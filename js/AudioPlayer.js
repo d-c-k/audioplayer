@@ -16,12 +16,13 @@ class AudioPlayer{
         this.duration = 0;
         this.currentTime = 0;
         this.trackCounter = 0;
+        this.trackBtns = document.querySelectorAll(".track_btn");
         this.background = document.getElementById("background");
         this.track = new Audio();
     }
 
     playPause(){
-        this.track.src = tracklist[this.trackCounter];
+        this.track.src = tracklistArr[this.trackCounter];
         
         this.track.addEventListener('loadedmetadata', () =>{
             this.duration = this.track.duration;
@@ -53,7 +54,7 @@ class AudioPlayer{
             if (this.repeating === false){
                 this.trackCounter++;
 
-                if (this.trackCounter > tracklist.length - 1){
+                if (this.trackCounter > tracklistArr.length - 1){
                     this.trackCounter = 0;
                 }
 
@@ -68,7 +69,7 @@ class AudioPlayer{
 
         this.prevBtn.addEventListener('click', () =>{
             if (this.trackCounter === 0){
-                this.trackCounter = tracklist.length - 1;
+                this.trackCounter = tracklistArr.length - 1;
             }
             else{
                 this.trackCounter--;
@@ -85,7 +86,7 @@ class AudioPlayer{
         })
 
         this.nextBtn.addEventListener('click', () =>{
-            if (this.trackCounter === tracklist.length - 1){
+            if (this.trackCounter === tracklistArr.length - 1){
                 this.trackCounter = 0;
             }
             else{
@@ -154,21 +155,34 @@ class AudioPlayer{
                 document.getElementById("repeat_btn_img").src = "icons/repeat.svg"
             }
         })
+
+        for (let i = 0; i < this.trackBtns.length; i++){
+            this.trackBtns[i].addEventListener('click', () =>{
+                this.trackCounter = i;
+                this.updateTrack();
+                if (this.isPlaying === true){
+                    this.track.play();
+                }
+            })
+        }
     }
 
     updateTrack(){    
-        this.track.src = tracklist[this.trackCounter];    
+        this.track.src = tracklistArr[this.trackCounter];    
         this.background.style = "background-image: url(" + themeGif[this.trackCounter] + ")";
         this.duration = this.track.duration;
         this.range.max = this.duration;
     }
-}
-let tracklist = [   
-    "audio/les_maitres_du_temps_1982.mp3",    
-    "audio/arrow_emblem_grand_prix_no_taka.mp3"
-]
 
-let themeGif = [
-    "background/time_masters.gif",
-    "background/arrow_emblem.gif"
-]
+    trackNavigation(){
+        
+        for (let i = 0;i < this.trackBtns.length; i++){
+            if (i === this.trackCounter){
+                this.trackBtns[this.trackCounter].innerHTML = "->" + tracklistArr[this.trackCounter];
+            }
+            else{
+                this.trackBtns[this.trackCounter].innerHTML = tracklistArr[this.trackCounter];
+            }
+        }
+    }
+}
