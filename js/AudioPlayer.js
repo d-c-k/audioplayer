@@ -17,12 +17,13 @@ class AudioPlayer{
         this.currentTime = 0;
         this.trackCounter = 0;
         this.trackBtns = document.querySelectorAll(".track_btn");
+        this.mobMarquee = document.getElementById("mob_marquee");
         this.background = document.getElementById("background");
         this.track = new Audio();
     }
 
     playPause(){
-        this.track.src = tracklistArr[this.trackCounter];
+        this.updateTrack();
         
         this.track.addEventListener('loadedmetadata', () =>{
             this.duration = this.track.duration;
@@ -168,21 +169,18 @@ class AudioPlayer{
     }
 
     updateTrack(){    
-        this.track.src = tracklistArr[this.trackCounter];    
+        this.track.src = "audio/" + tracklistArr[this.trackCounter];    
         this.background.style = "background-image: url(" + themeGif[this.trackCounter] + ")";
-        this.duration = this.track.duration;
-        this.range.max = this.duration;
+        this.mobMarquee.innerHTML = tracklistArr[this.trackCounter];
+        this.trackNavigation();
     }
 
     trackNavigation(){
-        
         for (let i = 0;i < this.trackBtns.length; i++){
-            if (i === this.trackCounter){
-                this.trackBtns[this.trackCounter].innerHTML = "->" + tracklistArr[this.trackCounter];
-            }
-            else{
-                this.trackBtns[this.trackCounter].innerHTML = tracklistArr[this.trackCounter];
-            }
+            this.trackBtns[i].classList.replace("track_btn_active", "track_btn");
+            this.trackBtns[i].innerHTML = this.trackBtns[i].innerHTML.replace(/&gt;/g, '');
         }
+        this.trackBtns[this.trackCounter].className = "track_btn_active";
+        this.trackBtns[this.trackCounter].innerHTML = ">" + this.trackBtns[this.trackCounter].innerHTML;
     }
 }

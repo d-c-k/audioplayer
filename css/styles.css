@@ -27,13 +27,12 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url("../background/time_masters.gif");
 }
 
 .main_container .tracklist {
   -ms-grid-column: 2;
-  -ms-grid-column-span: 2;
-  grid-column: 2/4;
+  -ms-grid-column-span: 4;
+  grid-column: 2/6;
   -ms-grid-row: 2;
   grid-row: 2;
   display: -webkit-box;
@@ -92,6 +91,10 @@ body {
   -webkit-appearance: none;
   -moz-appearance: none;
   opacity: 1;
+}
+
+.main_container .title_mobile {
+  display: none;
 }
 
 .main_container .audio_controls {
@@ -300,19 +303,29 @@ body {
     display: grid;
     -ms-grid-columns: 1rem 1fr 1fr 1fr 1fr 1rem;
         grid-template-columns: 1rem 1fr 1fr 1fr 1fr 1rem;
-    -ms-grid-rows: 1rem 2rem 2rem 2rem 1fr 2rem 6rem;
-        grid-template-rows: 1rem 2rem 2rem 2rem 1fr 2rem 6rem;
+    -ms-grid-rows: 1rem 2rem 2rem 2rem 2rem 1fr 2rem 6rem;
+        grid-template-rows: 1rem 2rem 2rem 2rem 2rem 1fr 2rem 6rem;
   }
   .main_container .main_display {
     -ms-grid-column: 1;
     -ms-grid-column-span: 6;
     grid-column: 1/7;
     -ms-grid-row: 1;
-    -ms-grid-row-span: 7;
-    grid-row: 1/8;
+    -ms-grid-row-span: 8;
+    grid-row: 1/9;
   }
   .main_container .tracklist {
     display: none;
+  }
+  .main_container .title_mobile {
+    display: inline-block;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 6;
+    grid-column: 1/7;
+    -ms-grid-row: 5;
+    grid-row: 5;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
   }
   .main_container .audio_controls {
     -ms-grid-column: 2;
@@ -353,8 +366,8 @@ body {
     -ms-grid-column: 2;
     -ms-grid-column-span: 4;
     grid-column: 2/6;
-    -ms-grid-row: 6;
-    grid-row: 6;
+    -ms-grid-row: 7;
+    grid-row: 7;
   }
 }
 /*# sourceMappingURL=styles.css.map */
